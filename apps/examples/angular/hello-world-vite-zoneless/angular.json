@@ -16,7 +16,6 @@
             "outputPath": "dist/hello-world",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {

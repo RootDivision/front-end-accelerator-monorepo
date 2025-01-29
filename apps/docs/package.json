@@ -1,5 +1,5 @@
 {
-  "name": "fe-accelerator-monorepo-docs",
+  "name": "fe-accelerator-docs",
   "private": true,
   "type": "module",
   "scripts": {
