@@ -31,7 +31,6 @@
     "typescript": "~5.5.2"
   },
   "optionalDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*"
+    "@repo/eslint-config": "*"
   }
 }

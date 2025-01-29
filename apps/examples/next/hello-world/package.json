@@ -22,7 +22,6 @@
     "typescript": "5.7.3"
   },
   "optionalDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*"
+    "@repo/eslint-config": "*"
   }
 }
