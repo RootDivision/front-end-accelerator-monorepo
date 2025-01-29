@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -7,6 +6,4 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   template: `<h1>hello world Angular</h1>`,
 })
-export class AppComponent {
-  title = 'hello-world';
-}
+export class AppComponent {}

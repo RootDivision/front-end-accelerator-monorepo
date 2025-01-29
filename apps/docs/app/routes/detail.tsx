@@ -1,12 +1,12 @@
 import { urls } from '@/const';
 import sdk from '@stackblitz/sdk';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 export default function Detail() {
   const { framework, name } = useParams();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       sdk.embedGithubProject(
         'embed',
