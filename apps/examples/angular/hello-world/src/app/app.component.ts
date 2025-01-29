@@ -4,6 +4,9 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  template: `<h1>Hello Zoneless Vite Angular</h1>`,
+  standalone: true,
+  template: `<h1>hello world Angular</h1>`,
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'hello-world';
+}
