@@ -7,7 +7,7 @@
     "./base": "./base.js",
     "./react": "./react.js",
     "./angular": "./angular.js",
-    "./next": "./next.js"
+    "./next-js": "./next.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
