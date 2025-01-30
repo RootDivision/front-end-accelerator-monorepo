@@ -1,11 +1,11 @@
 {
-  "name": "starter",
+  "name": "demo-app",
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "serve:ssr:starter": "node dist/starter/server/server.mjs",
+    "serve:ssr:demo-app": "node dist/demo-app/server/server.mjs",
     "lint": "ng lint"
   },
   "private": true,
