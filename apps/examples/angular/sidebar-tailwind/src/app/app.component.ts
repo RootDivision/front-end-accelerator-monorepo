@@ -9,14 +9,23 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="flex h-screen">
       <aside
-        class="bg-gray-50 border-gray-300 fixed flex-col h-full left-0 top-0 border-r"
+        class="bg-gray-50 border-gray-300 fixed flex-col h-full left-0 top-0 border-r hidden md:flex"
         [ngClass]="{
           'w-64': store.ui.sidebar.isOpen(),
           'w-[56px]': !store.ui.sidebar.isOpen(),
         }"
       >
-        <div class="p-4">SSS</div>
+        <div class="p-4">Logo</div>
       </aside>
+
+      <div
+        class="flex flex-col md:hidden"
+        [ngClass]="{
+          'fixed w-full h-full bg-red-500': !store.ui.sidebar.isOpen(),
+        }"
+      >
+        Overlay
+      </div>
 
       <main
         class="bg-gray-50 w-full"
