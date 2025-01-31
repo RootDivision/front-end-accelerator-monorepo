@@ -79,12 +79,14 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {conceptsQuery.isSuccess && (
+        {conceptsQuery.isSuccess && !!conceptsQuery.data.length && (
           <SidebarGroup>
-            <SidebarGroupLabel>Examples</SidebarGroupLabel>
+            <SidebarGroupLabel className="uppercase font-bold">
+              Concepts
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {conceptsQuery.data?.map((project) => (
+                {conceptsQuery.data.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
                       <NavLink to={`/${framework}/concepts/${project.name}`}>
@@ -98,12 +100,12 @@ export function AppSidebar() {
           </SidebarGroup>
         )}
 
-        {examplesQuery.isSuccess && (
+        {examplesQuery.isSuccess && !!examplesQuery.data.length && (
           <SidebarGroup>
             <SidebarGroupLabel>Examples</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {examplesQuery.data?.map((project) => (
+                {examplesQuery.data.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
                       <NavLink to={`/${framework}/examples/${project.name}`}>
