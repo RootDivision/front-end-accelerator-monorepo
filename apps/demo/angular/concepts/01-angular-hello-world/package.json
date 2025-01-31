@@ -1,0 +1,31 @@
+{
+  "name": "01-angular-hello-world",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^19.1.0",
+    "@angular/compiler": "^19.1.0",
+    "@angular/core": "^19.1.0",
+    "@angular/platform-browser": "^19.1.0",
+    "@angular/platform-browser-dynamic": "^19.1.0",
+    "@angular/router": "^19.1.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.1.5",
+    "@angular/cli": "^19.1.5",
+    "@angular/compiler-cli": "^19.1.0",
+    "typescript": "~5.7.2"
+  },
+  "optionalDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*"
+  }
+}
