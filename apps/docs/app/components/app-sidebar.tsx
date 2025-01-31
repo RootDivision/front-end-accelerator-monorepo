@@ -1,4 +1,4 @@
-import { getFolders, getProjectsByFramework } from '@/api';
+import { getConcepts, getExamples, getFolders } from '@/api';
 import {
   Sidebar,
   SidebarContent,
@@ -32,16 +32,21 @@ export function AppSidebar() {
     queryKey: [queryIds.GET_FOLDERS],
   });
 
-  console.log('foldersQuery: ', foldersQuery.data);
-  // const projectsQuery = useQuery({
-  //   enabled: !!framework && !!foldersQuery.isSuccess,
-  //   queryFn: () => getProjectsByFramework(framework!),
-  //   queryKey: [queryIds.GET_PROJECTS_BY_FRAMEWORK, framework],
-  // });
+  const conceptsQuery = useQuery({
+    enabled: !!framework && !!foldersQuery.isSuccess,
+    queryFn: () => getConcepts(framework!),
+    queryKey: [queryIds.GET_CONCEPTS, framework],
+  });
+
+  const examplesQuery = useQuery({
+    enabled: !!framework && !!foldersQuery.isSuccess,
+    queryFn: () => getExamples(framework!),
+    queryKey: [queryIds.GET_EXAMPLES, framework],
+  });
 
   return (
     <Sidebar>
-      {/* <SidebarContent>
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>FE-accelerator</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -54,10 +59,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Framework</SidebarGroupLabel>
           <SidebarGroupContent>
             <Select
-              onValueChange={(value) => {
-                // page refresh for iFrame removal
-                window.location.href = `/${value}`;
-              }}
+              onValueChange={(value) => (window.location.href = `/${value}`)}
               value={framework}
             >
               <SelectTrigger>
@@ -77,15 +79,15 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {projectsQuery.isSuccess && (
+        {conceptsQuery.isSuccess && (
           <SidebarGroup>
             <SidebarGroupLabel>Examples</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {projectsQuery.data?.map((project) => (
+                {conceptsQuery.data?.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
-                      <NavLink to={`/${framework}/${project.name}`}>
+                      <NavLink to={`/${framework}/concepts/${project.name}`}>
                         <span>{project.name}</span>
                       </NavLink>
                     </SidebarMenuButton>
@@ -95,7 +97,26 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         )}
-      </SidebarContent> */}
+
+        {examplesQuery.isSuccess && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Examples</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {examplesQuery.data?.map((project) => (
+                  <SidebarMenuItem key={project.name}>
+                    <SidebarMenuButton asChild>
+                      <NavLink to={`/${framework}/examples/${project.name}`}>
+                        <span>{project.name}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+      </SidebarContent>
     </Sidebar>
   );
 }

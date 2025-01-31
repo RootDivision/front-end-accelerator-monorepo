@@ -59,7 +59,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { framework, name } = useParams();
+  const { framework, name, type } = useParams();
 
   return (
     <html lang="en">
@@ -73,8 +73,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <QueryClientProvider client={queryClient}>
           <SidebarProvider>
             <AppSidebar />
-          
-            {/* <main className="p-4 space-y-4 flex flex-col w-full">
+
+            <main className="p-4 space-y-4 flex flex-col w-full">
               <div className="flex items-center justify-between">
                 <div className="flex space-x-1 items-center">
                   <SidebarTrigger />
@@ -86,7 +86,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <Button
                       onClick={() => {
                         sdk.openGithubProject(
-                          `${stackblitzUrl}/tree/main/apps/examples/${framework}/${name}`
+                          `${stackblitzUrl}/tree/main/apps/demo/${framework}/${type}/${name}`
                         );
                       }}
                       variant="outline"
@@ -98,7 +98,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 )}
               </div>
               {children}
-            </main> */}
+            </main>
           </SidebarProvider>
 
           <ScrollRestoration />

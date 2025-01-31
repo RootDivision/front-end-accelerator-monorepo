@@ -1,10 +1,10 @@
 export const queryIds = {
+  GET_CONCEPTS: 'GET_CONCEPTS',
+  GET_EXAMPLES: 'GET_EXAMPLES',
   GET_FOLDERS: 'GET_FOLDERS',
-  GET_PROJECT: 'GET_PROJECT',
-  GET_PROJECTS_BY_FRAMEWORK: 'GET_PROJECTS_BY_FRAMEWORK',
 };
 
 export const urls = {
-  GITHUB: '/tree/main/apps/examples',
+  GITHUB: '/tree/main/apps/demo',
   STACKBLITZ: '/RootDivision/front-end-accelerator-monorepo',
 };

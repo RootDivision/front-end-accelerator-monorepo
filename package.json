@@ -19,10 +19,10 @@
   "packageManager": "bun@1.1.42",
   "workspaces": [
     "apps/*",
-    "apps/stackblitz/angular/concepts/*",
-    "apps/stackblitz/angular/examples/*",
-    "apps/stackblitz/react/concepts/*",
-    "apps/stackblitz/react/examples/*",
+    "apps/demo/angular/concepts/*",
+    "apps/demo/angular/examples/*",
+    "apps/demo/react/concepts/*",
+    "apps/demo/react/examples/*",
     "packages/*"
   ]
 }

@@ -4,10 +4,8 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./base": "./base.js",
     "./react": "./react.js",
-    "./angular": "./angular.js",
-    "./next-js": "./next.js"
+    "./angular": "./angular.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

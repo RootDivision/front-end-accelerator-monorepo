@@ -4,17 +4,17 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 export default function Detail() {
-  const { framework, name } = useParams();
+  const { framework, name, type } = useParams();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       sdk.embedGithubProject(
         'embed',
-        `${urls.STACKBLITZ}${urls.GITHUB}/${framework}/${name}`,
+        `${urls.STACKBLITZ}${urls.GITHUB}/${framework}/${type}/${name}`,
         { openFile: 'package.json', theme: 'light' }
       );
     }
-  }, [framework, name]);
+  }, [framework, name, type]);
 
   return (
     <>

@@ -22,26 +22,28 @@ interface GithubContent {
   url: string;
 }
 
-export const getProject = async (name: string): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/examples/react/${name}`, {
-    headers: { Authorization },
-  });
-
-  return res.json();
-};
-
 export const getFolders = async (): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/stackblitz/`, {
+  const res = await fetch(`${url}/contents/apps/demo`, {
     headers: { Authorization },
   });
 
   return res.json();
 };
 
-export const getProjectsByFramework = async (
+export const getConcepts = async (
   framework: string
 ): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/examples/${framework}`, {
+  const res = await fetch(`${url}/contents/apps/demo/${framework}/concepts`, {
+    headers: { Authorization },
+  });
+
+  return res.json();
+};
+
+export const getExamples = async (
+  framework: string
+): Promise<GithubContent[]> => {
+  const res = await fetch(`${url}/contents/apps/demo/${framework}/examples`, {
     headers: { Authorization },
   });
 
