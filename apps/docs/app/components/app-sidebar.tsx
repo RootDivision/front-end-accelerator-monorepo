@@ -33,15 +33,15 @@ export function AppSidebar() {
   });
 
   console.log('foldersQuery: ', foldersQuery.data);
-  const projectsQuery = useQuery({
-    enabled: !!framework && !!foldersQuery.isSuccess,
-    queryFn: () => getProjectsByFramework(framework!),
-    queryKey: [queryIds.GET_PROJECTS_BY_FRAMEWORK, framework],
-  });
+  // const projectsQuery = useQuery({
+  //   enabled: !!framework && !!foldersQuery.isSuccess,
+  //   queryFn: () => getProjectsByFramework(framework!),
+  //   queryKey: [queryIds.GET_PROJECTS_BY_FRAMEWORK, framework],
+  // });
 
   return (
     <Sidebar>
-      <SidebarContent>
+      {/* <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>FE-accelerator</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -95,7 +95,7 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         )}
-      </SidebarContent>
+      </SidebarContent> */}
     </Sidebar>
   );
 }

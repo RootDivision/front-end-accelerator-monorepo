@@ -73,7 +73,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <QueryClientProvider client={queryClient}>
           <SidebarProvider>
             <AppSidebar />
-            <main className="p-4 space-y-4 flex flex-col w-full">
+          
+            {/* <main className="p-4 space-y-4 flex flex-col w-full">
               <div className="flex items-center justify-between">
                 <div className="flex space-x-1 items-center">
                   <SidebarTrigger />
@@ -97,7 +98,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 )}
               </div>
               {children}
-            </main>
+            </main> */}
           </SidebarProvider>
 
           <ScrollRestoration />

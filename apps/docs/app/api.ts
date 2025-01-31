@@ -31,7 +31,7 @@ export const getProject = async (name: string): Promise<GithubContent[]> => {
 };
 
 export const getFolders = async (): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/examples`, {
+  const res = await fetch(`${url}/contents/apps/stackblitz/`, {
     headers: { Authorization },
   });
 
