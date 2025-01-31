@@ -20,8 +20,8 @@
   "workspaces": [
     "apps/*",
     "apps/demo/angular/concepts/*",
-    "apps/demo/angular/examples/*",
     "apps/demo/react/concepts/*",
+    "apps/demo/angular/examples/*",
     "apps/demo/react/examples/*",
     "packages/*"
   ]

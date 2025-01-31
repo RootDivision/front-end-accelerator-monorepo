@@ -19,7 +19,6 @@
     "vite": "^6.0.11"
   },
   "optionalDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*"
+    "@repo/eslint-config": "*"
   }
 }
