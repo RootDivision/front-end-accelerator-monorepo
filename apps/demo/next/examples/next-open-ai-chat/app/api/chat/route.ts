@@ -12,7 +12,6 @@ interface ChatMessage {
 
 export async function POST(req: Request) {
   const { messages } = (await req.json()) as { messages: ChatMessage[] };
-  console.log('messages: ', messages);
 
   const result = streamText({
     messages,
