@@ -11,8 +11,8 @@ interface ChatMessage {
 }
 
 export async function POST(req: Request) {
-  console.log('hahah', process.env.OPENAI_API_KEY);
   const { messages } = (await req.json()) as { messages: ChatMessage[] };
+  console.log('messages: ', messages);
 
   const result = streamText({
     messages,
