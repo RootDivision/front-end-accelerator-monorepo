@@ -5,10 +5,12 @@
   "private": true,
   "exports": {
     "./react": "./react.js",
-    "./angular": "./angular.js"
+    "./angular": "./angular.js",
+    "./next": "./next.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "@next/eslint-plugin-next": "^15.1.6",
     "angular-eslint": "^19.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

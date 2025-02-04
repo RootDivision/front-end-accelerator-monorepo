@@ -21,8 +21,10 @@
     "apps/*",
     "apps/demo/angular/concepts/*",
     "apps/demo/react/concepts/*",
+    "apps/demo/next/concepts/*",
     "apps/demo/angular/examples/*",
     "apps/demo/react/examples/*",
+    "apps/demo/next/examples/*",
     "packages/*"
   ]
 }
