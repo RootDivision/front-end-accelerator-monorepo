@@ -10,16 +10,18 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { queryIds } from '@/const';
+import { useAppStore } from '@/store';
 import { useQuery } from '@tanstack/react-query';
-import { Rocket } from 'lucide-react';
 import { NavLink, useParams } from 'react-router';
 
 import { FoldersSelect } from './folders-select';
 
 export const FrameworkLogo = ({ framework }: { framework: string }) => {
+  const theme = useAppStore((state) => state.theme);
+
   const logos: Record<string, string> = {
     angular: '/angular-logo.svg',
-    next: '/next-logo.svg',
+    next: theme === 'light' ? '/next-logo.svg' : '/next-logo-dark.svg',
     react: '/react-logo.svg',
   };
 
