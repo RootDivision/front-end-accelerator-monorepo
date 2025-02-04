@@ -1,8 +1,10 @@
-/** @type {import('tailwindcss').Config} */
+import tailwindScrollbarHide from 'tailwind-scrollbar-hide';
+import tailwindCssAnimate from 'tailwindcss-animate';
+
 export default {
   content: ['./index.html', './app/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class'],
-  plugins: [import('tailwindcss-animate'), require('tailwindcss-animate')],
+  plugins: [tailwindCssAnimate, tailwindScrollbarHide],
   theme: {
     extend: {
       borderRadius: {
