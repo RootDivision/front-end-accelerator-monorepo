@@ -1,14 +1,8 @@
 import ReactDOM from 'react-dom/client';
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from './components/ui/tooltip';
 import { HorizontalTimeline } from './horizontal-timeline';
-import './index.css';
 import VerticalTimeline from './vertical-timeline';
+import './index.css';
 
 function App() {
   return (

@@ -296,7 +296,7 @@ export default function VerticalTimeline() {
         {timelineData.map((item) => (
           <div
             className={clsx(
-              'flex cursor-pointer space-x-4 rounded-lg p-4 transition-all hover:bg-accent',
+              'flex cursor-pointer space-x-4 rounded-lg p-4 transition-all hover:bg-gray-50',
               { 'bg-accent': activeItem?.id === item.id }
             )}
             key={item.id}

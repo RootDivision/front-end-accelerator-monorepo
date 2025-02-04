@@ -325,8 +325,8 @@ export function HorizontalTimeline() {
           {timelineData.map((item) => (
             <div
               className={clsx(
-                'flex w-40 flex-shrink-0 cursor-pointer flex-col items-center space-y-4 rounded-lg p-4 transition-all hover:bg-accent',
-                { 'bg-accent': activeItem?.id === item.id }
+                'flex w-40 flex-shrink-0 cursor-pointer flex-col items-center space-y-4 rounded-lg p-4 transition-all hover:bg-gray-50',
+                { 'bg-gray-50': activeItem?.id === item.id }
               )}
               key={item.id}
               onClick={() => setActiveItem(item)}
