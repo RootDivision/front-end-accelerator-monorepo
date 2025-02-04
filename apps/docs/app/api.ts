@@ -30,20 +30,14 @@ export const getFolders = async (): Promise<GithubContent[]> => {
   return res.json();
 };
 
-export const getConcepts = async (
-  framework: string
-): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/demo/${framework}/concepts`, {
-    headers: { Authorization },
-  });
-
-  return res.json();
-};
-
-export const getExamples = async (
-  framework: string
-): Promise<GithubContent[]> => {
-  const res = await fetch(`${url}/contents/apps/demo/${framework}/examples`, {
+export const getProjects = async ({
+  framework,
+  type,
+}: {
+  framework: string;
+  type: 'concepts' | 'examples';
+}): Promise<GithubContent[]> => {
+  const res = await fetch(`${url}/contents/apps/demo/${framework}/${type}`, {
     headers: { Authorization },
   });
 

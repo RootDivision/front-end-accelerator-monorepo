@@ -1,4 +1,4 @@
-import { getConcepts, getExamples, getFolders } from '@/api';
+import { getFolders, getProjects } from '@/api';
 import {
   Sidebar,
   SidebarContent,
@@ -10,10 +10,12 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { queryIds } from '@/const';
+import { useAppStore } from '@/store';
 import { useQuery } from '@tanstack/react-query';
 import { MoonIcon } from 'lucide-react';
-import { NavLink, useParams } from 'react-router';
+import { NavLink, useNavigate, useParams } from 'react-router';
 
+import { FoldersSelect } from './folders-select';
 import { Button } from './ui/button';
 import {
   Select,
@@ -24,8 +26,25 @@ import {
   SelectValue,
 } from './ui/select';
 
+export const FrameworkLogo = ({ framework }: { framework: string }) => {
+  const logos: Record<string, string> = {
+    angular: '/angular-logo.svg',
+    next: '/next-logo.svg',
+    react: '/react-logo.svg',
+  };
+
+  if (!logos[framework]) return null;
+
+  return (
+    <img alt={`${framework} logo`} className="w-6 h-6" src={logos[framework]} />
+  );
+};
+
 export function AppSidebar() {
-  const { framework } = useParams();
+  const toggleTheme = useAppStore((state) => state.toggleTheme);
+
+  const navigate = useNavigate();
+  const { framework = '' } = useParams();
 
   const foldersQuery = useQuery({
     queryFn: () => getFolders(),
@@ -34,13 +53,21 @@ export function AppSidebar() {
 
   const conceptsQuery = useQuery({
     enabled: !!framework && !!foldersQuery.isSuccess,
-    queryFn: () => getConcepts(framework!),
+    queryFn: () =>
+      getProjects({
+        framework,
+        type: 'concepts',
+      }),
     queryKey: [queryIds.GET_CONCEPTS, framework],
   });
 
   const examplesQuery = useQuery({
     enabled: !!framework && !!foldersQuery.isSuccess,
-    queryFn: () => getExamples(framework!),
+    queryFn: () =>
+      getProjects({
+        framework,
+        type: 'examples',
+      }),
     queryKey: [queryIds.GET_EXAMPLES, framework],
   });
 
@@ -50,7 +77,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>FE-accelerator</SidebarGroupLabel>
           <SidebarGroupContent>
-            <Button size={'icon'} variant="outline">
+            <Button onClick={toggleTheme} size={'icon'} variant="outline">
               <MoonIcon />
             </Button>
           </SidebarGroupContent>
@@ -58,24 +85,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Framework</SidebarGroupLabel>
           <SidebarGroupContent>
-            <Select
-              onValueChange={(value) => (window.location.href = `/${value}`)}
-              value={framework}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select a framework" />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectGroup>
-                  {foldersQuery.data?.map((folder) => (
-                    <SelectItem key={folder.name} value={folder.name}>
-                      {folder.name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <FoldersSelect />
           </SidebarGroupContent>
         </SidebarGroup>
 
@@ -90,6 +100,7 @@ export function AppSidebar() {
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
                       <NavLink to={`/${framework}/concepts/${project.name}`}>
+                        <FrameworkLogo framework={framework!} />
                         <span>{project.name}</span>
                       </NavLink>
                     </SidebarMenuButton>
@@ -109,6 +120,7 @@ export function AppSidebar() {
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
                       <NavLink to={`/${framework}/examples/${project.name}`}>
+                        <FrameworkLogo framework={framework!} />
                         <span>{project.name}</span>
                       </NavLink>
                     </SidebarMenuButton>

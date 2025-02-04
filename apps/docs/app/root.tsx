@@ -1,6 +1,7 @@
 import sdk from '@stackblitz/sdk';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
+import { useLayoutEffect } from 'react';
 import {
   isRouteErrorResponse,
   Links,
@@ -15,8 +16,10 @@ import type { Route } from './+types/root';
 
 import stylesheet from './app.css?url';
 import { AppSidebar } from './components/app-sidebar';
+import { FoldersSelect } from './components/folders-select';
 import { Button } from './components/ui/button';
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
+import { useAppStore } from './store';
 
 export const links: Route.LinksFunction = () => [
   { href: stylesheet, rel: 'stylesheet' },
@@ -59,7 +62,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const theme = useAppStore((state) => state.theme);
+
   const { framework, name, type } = useParams();
+
+  useLayoutEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
 
   return (
     <html lang="en">
@@ -76,9 +85,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             <main className="p-4 space-y-4 flex flex-col w-full">
               <div className="flex items-center justify-between">
-                <div className="flex space-x-1 items-center">
+                <div className="flex space-x-4 items-center grow">
                   <SidebarTrigger />
-                  {framework && name && <h1>{`/ ${framework} / ${name}`}</h1>}
+                  {framework && (
+                    <div className="flex items-center space-x-4">
+                      <ChevronRight /> <FoldersSelect />
+                    </div>
+                  )}
+                  {framework && name && (
+                    <div className="flex items-center space-x-4">
+                      <ChevronRight className="w-5" />
+                      <span>{name}</span>
+                    </div>
+                  )}
                 </div>
 
                 {framework && name && (
@@ -100,7 +119,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
               {children}
             </main>
           </SidebarProvider>
-
           <ScrollRestoration />
           <Scripts />
         </QueryClientProvider>

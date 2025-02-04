@@ -81,4 +81,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  html {
+    @apply font-mono;
+    @apply text-sm;
+  }
 }
