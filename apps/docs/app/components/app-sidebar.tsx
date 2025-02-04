@@ -10,21 +10,11 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { queryIds } from '@/const';
-import { useAppStore } from '@/store';
 import { useQuery } from '@tanstack/react-query';
-import { MoonIcon } from 'lucide-react';
-import { NavLink, useNavigate, useParams } from 'react-router';
+import { Rocket } from 'lucide-react';
+import { NavLink, useParams } from 'react-router';
 
 import { FoldersSelect } from './folders-select';
-import { Button } from './ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
 
 export const FrameworkLogo = ({ framework }: { framework: string }) => {
   const logos: Record<string, string> = {
@@ -41,9 +31,6 @@ export const FrameworkLogo = ({ framework }: { framework: string }) => {
 };
 
 export function AppSidebar() {
-  const toggleTheme = useAppStore((state) => state.toggleTheme);
-
-  const navigate = useNavigate();
   const { framework = '' } = useParams();
 
   const foldersQuery = useQuery({
@@ -75,13 +62,24 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>FE-accelerator</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <Button onClick={toggleTheme} size={'icon'} variant="outline">
-              <MoonIcon />
-            </Button>
+          <SidebarGroupContent className="py-2 flex flex-col space-y-8">
+            <div className="flex items-center space-x-4">
+              <img
+                alt="Front-end Accelerator"
+                className="h-12"
+                src="/logo.svg"
+              />
+
+              <p className="font-bold">Front-end Accelerator</p>
+            </div>
+
+            <p className="flex flex-col space-y-4 text-xs leading-5">
+              Speed up your Front-end development with pre-made building blocks
+              in React, Next, Angular, Vue, Nuxt, Svelte, SvelteKit,...
+            </p>
           </SidebarGroupContent>
         </SidebarGroup>
+
         <SidebarGroup>
           <SidebarGroupLabel>Framework</SidebarGroupLabel>
           <SidebarGroupContent>

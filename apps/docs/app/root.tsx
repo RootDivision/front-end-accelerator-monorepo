@@ -1,6 +1,6 @@
 import sdk from '@stackblitz/sdk';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink, MoonIcon, SunIcon } from 'lucide-react';
 import { useLayoutEffect } from 'react';
 import {
   isRouteErrorResponse,
@@ -63,6 +63,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const theme = useAppStore((state) => state.theme);
+  const toggleTheme = useAppStore((state) => state.toggleTheme);
 
   const { framework, name, type } = useParams();
 
@@ -82,11 +83,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <QueryClientProvider client={queryClient}>
           <SidebarProvider>
             <AppSidebar />
-
             <main className="p-4 space-y-4 flex flex-col w-full">
               <div className="flex items-center justify-between">
                 <div className="flex space-x-4 items-center grow">
-                  <SidebarTrigger />
+                  <SidebarTrigger className="w-8 h-8" variant="outline" />
                   {framework && (
                     <div className="flex items-center space-x-4">
                       <ChevronRight /> <FoldersSelect />
@@ -100,21 +100,42 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   )}
                 </div>
 
-                {framework && name && (
-                  <div className="flex space-x-2">
-                    <Button
-                      onClick={() => {
-                        sdk.openGithubProject(
-                          `${stackblitzUrl}/tree/main/apps/demo/${framework}/${type}/${name}`
-                        );
-                      }}
-                      variant="outline"
-                    >
-                      <ExternalLink />
-                      Open in StackBlitz
-                    </Button>
-                  </div>
-                )}
+                <div className="flex space-x-4 items-center">
+                  {framework && name && (
+                    <>
+                      <Button
+                        onClick={() => {
+                          sdk.openGithubProject(
+                            `${stackblitzUrl}/tree/main/apps/demo/${framework}/${type}/${name}`
+                          );
+                        }}
+                        variant="outline"
+                      >
+                        <ExternalLink />
+                        Open in StackBlitz
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          window.open(
+                            `https://github.com/${stackblitzUrl}/tree/main/apps/demo/${framework}/${type}/${name}`,
+                            '_blank'
+                          );
+                        }}
+                        variant="outline"
+                      >
+                        <ExternalLink />
+                        Open in GitHub
+                      </Button>
+                    </>
+                  )}
+                  <Button
+                    className=" w-9 "
+                    onClick={toggleTheme}
+                    variant="outline"
+                  >
+                    {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+                  </Button>
+                </div>
               </div>
               {children}
             </main>
